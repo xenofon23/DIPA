@@ -1,0 +1,25 @@
+{
+  "require": {
+    "mongodb/mongodb": "1.9.0",
+    "ext-json": "*",
+    "phpmailer/phpmailer": "v6.7.1",
+    "ext-curl": "*",
+    "psr/http-message": "1.0.1",
+    "ext-yaml": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "App",
+      "App\\Request\\":"App\\Request" ,
+      "App\\Gateway\\": "App\\Gateway",
+      "App\\Config\\": "App\\Config",
+      "App\\Router\\": "App\\Router",
+      "App\\Helpers\\": "App\\Helpers",
+      "App\\Error\\": "App\\Error",
+      "App\\Database\\": "App\\Database",
+      "App\\View\\": "App\\View",
+      "App\\Controllers\\":"App\\Controllers"
+
+    }
+  }
+}

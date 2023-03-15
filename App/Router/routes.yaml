@@ -1,0 +1,6 @@
+- url: "/users"
+  controller: UserController
+  methods: [GET, POST]
+- url: "/users/([0-9]+)"
+  controller: UserController
+  methods: [GET, PUT, DELETE]
