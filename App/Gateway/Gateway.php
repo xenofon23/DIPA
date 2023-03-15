@@ -4,28 +4,25 @@ namespace App\Gateway;
 
 
 
-use App\Helpers\general;
-use App\View\Page;
-use App\Request\RequestReceived;
-use App\Routereee\Router;
-use App\Controllers\ViewController;
+
+use App\Router\Router;
 
 
 class Gateway
 {
 
-    private RequestReceived $request;
-    public function __construct()
+    private Router $router;
+    public function __construct(Router $router)
     {
-//        $this->router=new Router();
-//        $this->page=new Page($this->router);
-        $this->request=new RequestReceived();
-//        $this->viewcontroller=new ViewController($this->page,$this->request);
+        $this->router=$router;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function load(){
-//        $this->checkMaintenanceMode();
-//        $this->viewcontroller->isPage();
+        //TODO MAINTENANCE AND OTHER CHECKS
+       $this->router->matchCurrentRequest();
     }
 
 }

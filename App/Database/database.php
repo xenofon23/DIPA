@@ -12,7 +12,7 @@ trait database
         $mongoConnection = new Mongo('mongodb://' .
             $_SERVER['APP_DB_ADDRESS'] . ':' .
             $_SERVER['APP_DB_PORT']);
-        $db = $mongoConnection->selectDatabase('hotelRawData');
+        $db = $mongoConnection->selectDatabase('SOME_DB_NAME');
         return $db->selectCollection($mongoCollection);
     }
 

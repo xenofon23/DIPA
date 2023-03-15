@@ -5,7 +5,8 @@ namespace App\View;
 use App\Database\database;
 use App\Helpers\general;
 use App\Helpers\headers;
-use App\Routereee\Router;
+use App\Router\Router;
+
 
 class Page
 {
