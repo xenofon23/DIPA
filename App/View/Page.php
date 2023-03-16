@@ -18,22 +18,34 @@ class Page
     /**
      * @param Router $router
      */
-    public function __construct(Router $router)
+    public function __construct()
     {
-        $this->router = $router;
     }
 
     public function generatePage($page): string
     {
-        $page = $this->router->GetRoute($page) ?: $this->router->GetRoute('index');
+        $page =$this->isRegisteredPage($page);
+
+        if ($page===null){
+            $this->generatePage('index.html');
+        }
         $page['template']['{{data}}'] = $this->convertPageData($page);
-        $bluePrint = $this->getContent('./View/Tpl/htmlBlueprint.tpl');
+        $bluePrint = file_get_contents('../App/View/Tpl/htmlBlueprint.tpl');
         $arrayTemplate = (array)$page['template'];
         return strtr($bluePrint, $arrayTemplate);
     }
 
+    public function isRegisteredPage($pageName): object|array|null
+    {
+        $collection = $this->mongo('pages');
+        $match = [
+            'name' => $pageName
+        ];
 
-    function viewPage($page)
+       return $collection->findOne($match, []);
+    }
+
+        function viewPage($page)
     {
         echo $page;
     }

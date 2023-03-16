@@ -1,0 +1,18 @@
+[
+  {
+    "url": "/test.html",
+    "controller": "\\App\\Controllers\\ViewController",
+    "methods": [
+      "GET"
+    ]
+  },
+  {
+    "url": "/users/([0-9]+)",
+    "controller": "UserController",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ]
+  }
+]

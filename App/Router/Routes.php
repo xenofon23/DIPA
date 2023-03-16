@@ -20,13 +20,12 @@ class Routes
         return $this->routes;
     }
 
-    public function loadRoutesFromYaml($file)
+    public function loadRoutesFromJson(): void
     {
-        $routes = yaml_parse_file($file);
+        $routes =json_decode(file_get_contents('../App/Router/routes.json'),true);
 
         foreach ($routes as $route) {
             $this->addRoute($route['url'], $route['controller'], $route['methods']);
         }
-        print_r($routes);
     }
 }

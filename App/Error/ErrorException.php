@@ -20,7 +20,7 @@ class ErrorException
         ];
         $errorLog=new ErrorLog('error',$time,$errNo,$errMsg,$errFile,$errLine);
         $errorLog->addError();
-        $this->set_headers('json');
+//        $this->set_headers('json');
         echo json_encode($errorArray,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
     }
 
@@ -38,7 +38,7 @@ class ErrorException
         ];
         $exceptionLog=new ExceptionLog('exception',$time,$e->getTrace(),$e->getMessage(),$e->getFile(),$e->getLine());
         $exceptionLog->addException();
-        $this->set_headers('json');
+//        $this->set_headers('json');
         echo json_encode($exceptionArray,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
 
     }

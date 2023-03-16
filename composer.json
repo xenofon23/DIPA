@@ -4,8 +4,7 @@
     "ext-json": "*",
     "phpmailer/phpmailer": "v6.7.1",
     "ext-curl": "*",
-    "psr/http-message": "1.0.1",
-    "ext-yaml": "*"
+    "psr/http-message": "1.0.1"
   },
   "autoload": {
     "psr-4": {

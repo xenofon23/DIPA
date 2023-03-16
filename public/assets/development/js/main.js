@@ -1,22 +1,45 @@
-console.log('started');
-const controller = new AbortController();
-const signal = controller.signal;
 
-async function fetchData(url, signal) {
-    try {
-        const response = await fetch(url, { signal });
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        if (error.name === 'AbortError') {
-            console.log('Request was aborted');
+console.log('main.js ready');
+import {indexPage, buildPills} from "./tamplates/tamplates.js";
+
+let weatherApp = {
+    init: () => {
+        const dataElement = document.getElementById('mainData');
+        const pageData = JSON.parse(dataElement.innerText);
+        let pageContainer = document.getElementById('container');
+
+        if (document.body.id === 'loginpage') {
+            pageContainer.insertAdjacentHTML('beforeend', weatherApp.buildLogin(pageData));
+            weatherApp.buildLoginJs();
         } else {
-            console.error('Error occurred', error);
+            pageContainer.insertAdjacentHTML('beforeend', weatherApp.buildIndex(pageData));
         }
-    }
-}
+    },
 
-fetchData('/data', signal).then(r => {});
+//          >>>>>>>>>Page Building Functions<<<<<<<<<<
 
-// Abort the request after 5 seconds
-setTimeout(() => controller.abort(), 5000);
+    buildLoginJs: () => {
+        return buildPills();
+    },
+    buildIndex: (data) => {
+        return indexPage(data);
+    },
+
+//          >>>>>>>>>Error/Success Handlers<<<<<<<<<<
+    errorHandler(data) {
+        weatherApp.postError(data)
+        return {
+            'status': 'error',
+            'message': data
+        }
+    },
+    successHandler(data) {
+        return {
+            'status': 'success',
+            'message': data
+        }
+
+
+}}
+
+weatherApp.init();

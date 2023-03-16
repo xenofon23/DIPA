@@ -2,12 +2,14 @@
 
 namespace App\Router;
 
+use App\Helpers\general;
 use App\Request\RequestReceived;
 use Exception;
 
 class Router
 
 {
+    use general;
     protected Routes $routes;
     private RequestReceived $request;
     public function __construct(RequestReceived $request,Routes $routes)
@@ -24,8 +26,6 @@ class Router
     {
         $requestMethod = $this->request->getMethod();
         $requestUri =  $this->request->getUri();
-
-        print_r($requestUri);
         return $this->match($requestUri, $requestMethod);
     }
 
@@ -41,13 +41,15 @@ class Router
             }
 
             if (preg_match("#^$route[url]$#", $requestUri)) {
+                echo $route['controller'];
                 if(!class_exists($route['controller'])){
                     throw new Exception('class does not exist');
                 }
-                $controller = new $route['controller']();
+
                 if (!method_exists($route['controller'],$route['method'])){
                     throw new Exception('method does not exist');
                 }
+                $controller = new $route['controller']();
                 return $controller->$route['method']($this->request->getMessage());
             }
         }

@@ -30,7 +30,8 @@ class ExceptionLog
     }
 
 
-    public function addException(){
+    public function addException(): void
+    {
         $filePath= './var/logs/'.$this->getCurrentDate().'.txt';
         file_put_contents($filePath,$this->errorString(),FILE_APPEND);
 
