@@ -1,10 +1,12 @@
-[
-  {
-    "url": "/test.html",
-    "controller": "\\App\\Controllers\\ViewController",
+
+[{
+    "url": "/AuthenticationController/test",
+    "controller": "\\App\\Controllers\\AuthenticationController",
     "methods": [
-      "GET"
-    ]
+      "POST"
+    ],
+    "method": "test",
+    "auth": true
   },
   {
     "url": "/users/([0-9]+)",
@@ -13,6 +15,7 @@
       "GET",
       "PUT",
       "DELETE"
-    ]
-  }
-]
+    ],
+    "method": "test",
+    "auth": true
+  }]

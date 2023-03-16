@@ -39,6 +39,10 @@ class RequestReceived implements RequestReceivedinterface
         return file_get_contents('php://input');
     }
 
+    public function getAutCookie(){
+        return $_COOKIE['auth']??null;
+    }
+
     public function getFullUrl(): string
     {
         return "https://$this->host".$this->cleanString('/[^a-zA-Z-]/',$this->getUri());

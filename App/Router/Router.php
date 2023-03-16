@@ -2,6 +2,7 @@
 
 namespace App\Router;
 
+use App\Helpers\AuthenticatedUser;
 use App\Helpers\general;
 use App\Request\RequestReceived;
 use Exception;
@@ -9,6 +10,7 @@ use Exception;
 class Router
 
 {
+    use AuthenticatedUser;
     use general;
     protected Routes $routes;
     private RequestReceived $request;
@@ -36,12 +38,13 @@ class Router
     public function match($requestUri, $requestMethod)
     {
         foreach ($this->routes->getRoutes() as $route) {
-            if (!in_array($requestMethod, $route['methods'])) {
-               throw new Exception('route not found');
-            }
+
 
             if (preg_match("#^$route[url]$#", $requestUri)) {
-                echo $route['controller'];
+                if (!in_array($requestMethod, $route['methods'])) {
+                    throw new Exception('route not found');
+                }
+
                 if(!class_exists($route['controller'])){
                     throw new Exception('class does not exist');
                 }
@@ -49,8 +52,13 @@ class Router
                 if (!method_exists($route['controller'],$route['method'])){
                     throw new Exception('method does not exist');
                 }
-                $controller = new $route['controller']();
-                return $controller->$route['method']($this->request->getMessage());
+                if($route['auth']){
+                    $this->isAuthUser($this->request->getAutCookie());
+                }
+                $data=['mar'=>2];
+                $obj = new $route['controller']($data);
+                $method=$route['method'];
+                return $obj->$method();
             }
         }
         throw new Exception('service is not registerd');
