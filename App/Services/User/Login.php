@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\User;
 
 use App\Database\database;
+use App\Helpers\AuthenticatedUser;
 use Exception;
 use MongoDB\BSON\UTCDateTime;
-use MongoDB\Collection;
-use function PHPUnit\Framework\throwException;
 
 class Login
 {
+    use AuthenticatedUser;
 
     use database;
 
@@ -28,7 +28,7 @@ class Login
     public function __construct(array $data)
     {
         $this->userName=$data['userName'];
-        $this->password=$data['password'];
+        $this->password=hash('sha256',$data['password']);
         $this->setUp();
     }
 
@@ -48,13 +48,15 @@ class Login
     {
         $userProfile=$this->searchUserProfile();
         if(is_null($userProfile)){
-           echo 'user not found';
+            throw new Exception('user not found');
         }
         $this->setSavedUserName($userProfile['username']);
         $this->setSavedPassword($userProfile['password']);
         $this->setUserId($userProfile['userId']);
+        $this->getUserDetailsInstance($this->userId);
         $this->loadService();
     }
+
 
     /**
      * @throws Exception
@@ -66,8 +68,9 @@ class Login
         throw new Exception('fail password');
 
     }
-    private function matchUserCredentials(){
-        if($this->password===$this->savedPassword){
+    private function matchUserCredentials(): bool
+    {
+        if(hash_equals($this->password,$this->savedPassword)){
             return true;
         }
         return false;
@@ -109,6 +112,7 @@ class Login
     /**
      * @throws Exception
      */
+    //TODO REDIRECT
     private function setAuthenticationCookie(): string
     {
         $this->setToken(bin2hex(random_bytes(8)));
@@ -117,6 +121,7 @@ class Login
         $cookie_value = hash('sha256',$cookie_value);
         setcookie('auth', $cookie_value, time() +  600, '/');// expire after 10 minutes;
         $this->SetTokenInUserProfile();
+
 //        header("Location: index.html");
         return 'login successfully';
     }

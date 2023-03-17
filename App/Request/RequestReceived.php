@@ -4,7 +4,7 @@ namespace App\Request;
 
 use App\Helpers\helperString;
 
-class RequestReceived implements RequestReceivedinterface
+class RequestReceived
 {
 
     use helperString;
@@ -34,9 +34,10 @@ class RequestReceived implements RequestReceivedinterface
         return $headers;
     }
 
-    public function getMessage()
+    public function getData()
     {
-        return file_get_contents('php://input');
+        $data=json_decode(file_get_contents('php://input'),true);
+        return $data;
     }
 
     public function getAutCookie(){

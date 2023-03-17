@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Services\Login;
-use PHPMailer\PHPMailer\Exception;
-use function PHPUnit\Framework\isEmpty;
+use App\Services\User\Login;
+use App\Services\User\RegisterUser;
+use App\Services\User\UserDetails;
+use Exception;
+
 
 class AuthenticationController
 {
@@ -23,18 +25,32 @@ class AuthenticationController
      */
     public function enableLogin(): string
     {
-        if (!isset($data['userName']) && !isset($data['password'])) {
+        if (!isset($data['userName']) | !isset($data['password'])) {
             $login = new Login($this->data);
             return $login->loadService();
         }
-        throw new \Exception('den edoses username pass');
+        throw new Exception('den edoses username pass');
     }
 
     public function test(): string
-    {
-        return 'perasa';
+    {$userDetails =UserDetails::getInstance();
+
+
+        return $userDetails->getUserId();
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function enableRegister(): string
+    {
+        if (!isset($data['userName']) | !isset($data['password'])) {
+            $register=new RegisterUser($this->data);
+            return $register->register();
+        }
+        throw new Exception('Den edoses stoixia isodou');
+
+    }
 
 
 }

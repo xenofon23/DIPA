@@ -1,21 +1,19 @@
 
 [{
-    "url": "/AuthenticationController/test",
+    "url": "/AuthenticationController/Login",
     "controller": "\\App\\Controllers\\AuthenticationController",
     "methods": [
       "POST"
     ],
-    "method": "test",
-    "auth": true
+    "method": "enableLogin",
+    "auth": false
   },
   {
-    "url": "/users/([0-9]+)",
-    "controller": "UserController",
+    "url": "/AuthenticationController/Register",
+    "controller": "\\App\\Controllers\\AuthenticationController",
     "methods": [
-      "GET",
-      "PUT",
-      "DELETE"
+      "POST"
     ],
-    "method": "test",
-    "auth": true
+    "method": "enableRegister",
+    "auth": false
   }]

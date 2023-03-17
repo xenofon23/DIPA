@@ -55,8 +55,7 @@ class Router
                 if($route['auth']){
                     $this->isAuthUser($this->request->getAutCookie());
                 }
-                $data=['mar'=>2];
-                $obj = new $route['controller']($data);
+                $obj = new $route['controller']($this->request->getData());
                 $method=$route['method'];
                 return $obj->$method();
             }
