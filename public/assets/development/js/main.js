@@ -1,45 +1,47 @@
 
-console.log('main.js ready');
-import {indexPage, buildPills} from "./tamplates/tamplates.js";
+import { renderLoginForm, renderRegistrationForm } from './templates/templates.js';
 
-let weatherApp = {
-    init: () => {
-        const dataElement = document.getElementById('mainData');
-        const pageData = JSON.parse(dataElement.innerText);
-        let pageContainer = document.getElementById('container');
+const mainData = JSON.parse(document.getElementById('mainData').textContent);
 
-        if (document.body.id === 'loginpage') {
-            pageContainer.insertAdjacentHTML('beforeend', weatherApp.buildLogin(pageData));
-            weatherApp.buildLoginJs();
-        } else {
-            pageContainer.insertAdjacentHTML('beforeend', weatherApp.buildIndex(pageData));
-        }
-    },
+const container = document.getElementById('container');
 
-//          >>>>>>>>>Page Building Functions<<<<<<<<<<
+function renderPage() {
+    container.innerHTML = renderLoginForm(mainData);
 
-    buildLoginJs: () => {
-        return buildPills();
-    },
-    buildIndex: (data) => {
-        return indexPage(data);
-    },
+    const loginForm = document.querySelector('form');
+    loginForm.addEventListener('submit', handleLoginSubmit);
 
-//          >>>>>>>>>Error/Success Handlers<<<<<<<<<<
-    errorHandler(data) {
-        weatherApp.postError(data)
-        return {
-            'status': 'error',
-            'message': data
-        }
-    },
-    successHandler(data) {
-        return {
-            'status': 'success',
-            'message': data
-        }
+    const registerLink = document.createElement('a');
+    registerLink.textContent = mainData.a2;
+    registerLink.href = '#';
+    registerLink.addEventListener('click', handleRegisterClick);
 
+    container.appendChild(registerLink);
+}
 
-}}
+function handleLoginSubmit(event) {
+    event.preventDefault();
 
-weatherApp.init();
+    const formData = new FormData(event.target);
+
+    // TODO: send login request with formData
+}
+
+function handleRegisterClick(event) {
+    event.preventDefault();
+
+    container.innerHTML = renderRegistrationForm(mainData);
+
+    const registrationForm = document.querySelector('form');
+    registrationForm.addEventListener('submit', handleRegistrationSubmit);
+}
+
+function handleRegistrationSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    // TODO: send registration request with formData
+}
+
+renderPage();

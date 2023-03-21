@@ -39,7 +39,6 @@ class Gateway
      */
     private function checkForPage(): string
     {
-        echo $this->request->getUri();
         if($this->checkHtml($this->request->getUri())){
             $page=new Page();
             return $page->generatePage($this->request->getUri());

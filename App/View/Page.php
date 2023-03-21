@@ -15,24 +15,22 @@ class Page
     use database;
 
     private Router $router;
-    /**
-     * @param Router $router
-     */
-    public function __construct()
-    {
-    }
+
+
 
     public function generatePage($page): string
     {
-        $page =$this->isRegisteredPage($page);
+        $page =json_decode(json_encode($this->isRegisteredPage($page),true),true);
 
         if ($page===null){
-            $this->generatePage('index.html');
+            $this->generatePage('404.html');
         }
-        $page['template']['{{data}}'] = $this->convertPageData($page);
+        $page['template']['{{data}}'] =  json_encode($page['template']['{{data}}'], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         $bluePrint = file_get_contents('../App/View/Tpl/htmlBlueprint.tpl');
         $arrayTemplate = (array)$page['template'];
-        return strtr($bluePrint, $arrayTemplate);
+       return strtr($bluePrint, $arrayTemplate);
+
+
     }
 
     public function isRegisteredPage($pageName): object|array|null
@@ -45,10 +43,7 @@ class Page
        return $collection->findOne($match, []);
     }
 
-        function viewPage($page)
-    {
-        echo $page;
-    }
+
 
 
 }
