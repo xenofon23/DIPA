@@ -25,7 +25,7 @@ class Gateway
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function load(){
         //TODO MAINTENANCE AND OTHER CHECKS
@@ -41,7 +41,7 @@ class Gateway
     {
         if($this->checkHtml($this->request->getUri())){
             $page=new Page();
-            return $page->generatePage($this->request->getUri());
+            return $page->generatePage($this->request->getUri(),'ma');
         }
         throw new Exception('page does not and in .html');
 }
