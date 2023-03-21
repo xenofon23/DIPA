@@ -18,7 +18,7 @@ class Page
 
 
 
-    public function generatePage($page): string
+    public function generatePage($page,array $vars=null): string
     {
         $buildPage=new BuildPage();
         $page =json_decode(json_encode($this->isRegisteredPage($page),true),true);
@@ -27,7 +27,7 @@ class Page
             $this->generatePage('404.html');
         }
         if (isset($page['dynamicData'])) {
-            $page['template']['{{data}}']['dynamicData'] = $this->callProcess($page['dynamicData']['class'],$page['dynamicData']['function']);
+            $page['template']['{{data}}']['dynamicData'] = $this->callProcess($page['dynamicData']['class'],$page['dynamicData']['function'],$vars);
         }
         $page['template']['{{data}}'] =  json_encode($page['template']['{{data}}'], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         $bluePrint = file_get_contents('../App/View/Tpl/htmlBlueprint.tpl');
@@ -38,10 +38,11 @@ class Page
 
     }
     //TODO IF I ' M NOT BORED I CAN ADD ROUTES FOR PROCESS IN PAGE
-    public function callProcess($class,$function){
+    public function callProcess($class,$function,$vars){
 //        $obj=new Search();
 //        return json_encode($obj->function());
-        return 'pare ta data';
+        sleep(2);
+        return 'pare ta datadddddddddddddddddddddddddddddddddddddddd';
     }
 
     public function isRegisteredPage($pageName): object|array|null

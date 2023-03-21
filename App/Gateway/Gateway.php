@@ -39,9 +39,9 @@ class Gateway
      */
     private function checkForPage(): string
     {
-        if($this->checkHtml($this->request->getUri())){
+        if($this->checkHtml($this->request->getUriPath())){
             $page=new Page();
-            return $page->generatePage($this->request->getUri(),'ma');
+            return $page->generatePage($this->request->getUriPath(),$this->request->getUriVars());
         }
         throw new Exception('page does not and in .html');
 }
