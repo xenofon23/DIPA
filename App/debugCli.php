@@ -16,7 +16,4 @@ use App\View\Page;
 //$test=$page->generatePage('/index.html');
 //echo 'malakia';
 $string = '\App\Controllers\AuthenticationController';
-
-$result = preg_replace('/^.*\\\\/', '', $string);
-$result=preg_replace('/Controller/', '', $result);
-echo $result;
+$container=new Container();
