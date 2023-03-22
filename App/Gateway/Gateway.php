@@ -25,7 +25,7 @@ class Gateway
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function load(){
         //TODO MAINTENANCE AND OTHER CHECKS
@@ -39,9 +39,9 @@ class Gateway
      */
     private function checkForPage(): string
     {
-        if($this->checkHtml($this->request->getUri())){
+        if($this->checkHtml($this->request->getUriPath())){
             $page=new Page();
-            return $page->generatePage($this->request->getUri());
+            return $page->generatePage($this->request->getUriPath(),$this->request->getUriVars());
         }
         throw new Exception('page does not and in .html');
 }

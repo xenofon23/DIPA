@@ -3,6 +3,7 @@
 namespace App\Error;
 
 use App\Helpers\headers;
+use App\View\Page;
 
 class ErrorException
 {
@@ -37,7 +38,10 @@ class ErrorException
         ];
         $exceptionLog=new ExceptionLog('exception',$time,$e->getTrace(),$e->getMessage(),$e->getFile(),$e->getLine());
         $this->set_headers('json');
-        echo json_encode($exceptionArray,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        die(json_encode($exceptionArray,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+//        $page=new Page();
+//        //TODO 404 PAGE OR OOPS
+//        die($page->generatePage('/index.html'));
 
     }
 

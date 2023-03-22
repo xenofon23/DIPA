@@ -54,7 +54,6 @@ class Login
         $this->setSavedPassword($userProfile['password']);
         $this->setUserId($userProfile['userId']);
         $this->getUserDetailsInstance($this->userId);
-        $this->loadService();
     }
 
 
@@ -115,11 +114,16 @@ class Login
     //TODO REDIRECT
     private function setAuthenticationCookie(): string
     {
+
+//        session_start();
+//        $_SESSION["userId"] = $this->userId;
+
+
         $this->setToken(bin2hex(random_bytes(8)));
-        $token=$this->token;
-        $cookie_value=$this->userId . ':' . $token;
-        $cookie_value = hash('sha256',$cookie_value);
-        setcookie('auth', $cookie_value, time() +  600, '/');// expire after 10 minutes;
+        $token = $this->token;
+        $cookie_value = $this->userId . ':' . $token;
+        $cookie_value = hash('sha256', $cookie_value);
+        setcookie('auth', $cookie_value, time() + 600, '/');// expire after 10 minutes;
         $this->SetTokenInUserProfile();
 
 //        header("Location: index.html");

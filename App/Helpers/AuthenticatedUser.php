@@ -14,6 +14,7 @@ trait AuthenticatedUser
      */
     public function isAuthUser($cookie): void
     {
+
         if(!isset($cookie)){
             throw new Exception('epp ti pas na kanis');
         }
