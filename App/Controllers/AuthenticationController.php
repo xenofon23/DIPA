@@ -33,10 +33,10 @@ class AuthenticationController
     }
 
     public function test(): string
-    {$userDetails =UserDetails::getInstance();
+    {
 
 
-        return $userDetails->getUserId();
+        return 'ok';
     }
 
     /**

@@ -23,7 +23,7 @@ function handleLoginSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    location.replace("http://message.lan/search.html")
+    // location.replace("http://message.lan/search.html")
     // TODO: send login request with formData
 }
 

@@ -19,27 +19,31 @@ class RegisterUser
     {
         $this->userName=$data['userName'];
         $this->password= hash('sha256',$data['password']);
-        $this->isRegisterUser();
         $this->userId=bin2hex(random_bytes(16));
     }
 
     /**
      * @throws Exception
      */
-    private function isRegisterUser(): void
+    private function isRegisterUser(): bool
     {
         $collection=$this->mongo('profiles');
         $projection = ['username' => 1, 'password' => 0,'userId'=>0, '_id' => 0];
         $query = ['username' => $this->userName];
         $result = $collection->findOne($query);
-        if(!is_null($result)){
-            trigger_error('user exist');
+        if(is_null($result)){
+            return true;
         }
+        return false;
 
     }
 //TODO REDIRECT
+
+    /**
+     * @throws Exception
+     */
     public function register(): string
-    {
+    {if($this->isRegisterUser()){
         $collection=$this->mongo('profiles');
         $document=[
             'username'=>$this->userName,
@@ -48,8 +52,19 @@ class RegisterUser
             ];
         $result = $collection->insertOne($document);
         // header("Location: index.html");
-        return 'Register successfully!';
+        return json_encode(array(
+            "success" => true,
+            "message" => "Register successfully!"
+        ));
+    }else{
+        header('Content-Type: application/json');
+        return json_encode(array(
+            "success" => false,
+            "message" => "user has exist"
+        ));
     }
+    }
+
 
 
 }
