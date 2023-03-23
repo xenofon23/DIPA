@@ -1,5 +1,7 @@
 <?php
 require_once "../vendor/autoload.php";
+
+use App\Container\Container;
 use App\Controllers\AuthenticationController;
 use App\Services\User\UserDetails;
 use App\View\Page;
@@ -15,13 +17,16 @@ use App\View\Page;
 //$page=new Page();
 //$test=$page->generatePage('/index.html');
 //echo 'malakia';
-$string = '\App\Controllers\AuthenticationController';
-$container=new Container();
-// Add a service to the container
-$container->addService('logger', new Logger());
+//$string = '\App\Controllers\AuthenticationController';
+//$data = ['userId' => 123, 'name' => 'John Doe', 'email' => 'john.doe@example.com'];
+//
+//$container=new Container();
+//$obj=$container->create('App\Controllers\UserDetailsController', $data);
+//$obj->mal();
+$updateFields = [
+    'basic.location' => 'Athens',
+    'second.age' => '25'
+];
 
-// Create an instance of a class with a dependency on the 'logger' service
-$myClass = $container->create(MyClass::class);
-
-// Use the instance of MyClass
-$myClass->doSomething();
+$jsonFields = json_encode($updateFields);
+echo '';

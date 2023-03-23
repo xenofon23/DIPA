@@ -1,7 +1,8 @@
 <?php
 namespace App\Services;
-
+use MongoDB;
 use Exception;
+use InvalidArgumentException;
 
 class UserProfile
 {
@@ -17,7 +18,11 @@ class UserProfile
             try {
                 $collection = $this->mongo('UserDetails');
                 $collection->insertOne($userDetails);
-                return 'profile has register';
+                header('Content-Type: application/json');
+                return json_encode(array(
+                    "success" => true,
+                    "message" => "profile add"
+                ));
             } catch (Exception $e) {
                 throw new Exception($e->getMessage());
             }
@@ -38,5 +43,27 @@ class UserProfile
             return true;
         }
         return false;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function updateUserProfile(array $userDetails)
+    {
+        // TODO Validate input
+
+        try {
+            $collection = $this->mongo('UserDetails');
+            $filter = ['userId' => $userDetails['userId']];
+            $update = ['$set' => $userDetails];
+            $collection->updateOne($filter, $update);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        return json_encode(array(
+            "success" => true,
+            "message" => "profile update"
+        ));
+
     }
 }

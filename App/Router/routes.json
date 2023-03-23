@@ -34,5 +34,14 @@
     ],
     "method": "createProfile",
     "auth": true
+  },
+  {
+    "url": "/UserDetailsController/UpdateProfile",
+    "controller": "\\App\\Controllers\\UserDetailsController",
+    "methods": [
+      "POST"
+    ],
+    "method": "updateProfile",
+    "auth": true
   }
 ]

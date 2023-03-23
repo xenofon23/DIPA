@@ -15,14 +15,16 @@ class UserDetailsController
     private string $userId;
 
     private UserProfile $userProfile;
+
     /**
+     * @param UserProfile $userProfile
      * @param array $data
      * @throws Exception
      */
-    public function __construct(array $data)
+    public function __construct(UserProfile $userProfile,array  $data)
     {
         $this->data = $data;
-        $this->userProfile=new UserProfile();
+        $this->userProfile=$userProfile;
         $userDetails = UserDetails::getInstance();
         $this->userId=$userDetails->getUserId();
     }
@@ -34,6 +36,14 @@ class UserDetailsController
         //TODO VALIDATION
         $this->data['userId']= $this->userId;
         return $this->userProfile->createUser($this->data);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function updateProfile(){
+        $this->data['userId']= $this->userId;
+        return $this->userProfile->updateUserProfile($this->data);
     }
 
 }
