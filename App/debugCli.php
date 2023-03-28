@@ -3,6 +3,7 @@ require_once "../vendor/autoload.php";
 
 use App\Container\Container;
 use App\Controllers\AuthenticationController;
+use App\Services\matchProfileServices;
 use App\Services\User\UserDetails;
 use App\View\Page;
 
@@ -23,10 +24,13 @@ use App\View\Page;
 //$container=new Container();
 //$obj=$container->create('App\Controllers\UserDetailsController', $data);
 //$obj->mal();
-$updateFields = [
-    'basic.location' => 'Athens',
-    'second.age' => '25'
-];
-
-$jsonFields = json_encode($updateFields);
-echo '';
+//$updateFields = [
+//    'basic.location' => 'Athens',
+//    'second.age' => '25'
+//];
+//
+//$jsonFields = json_encode($updateFields);
+//echo '';
+$match=new matchProfileServices();
+$test=$match->findBestMatch();
+echo "";
