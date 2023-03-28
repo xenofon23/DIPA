@@ -43,5 +43,14 @@
     ],
     "method": "updateProfile",
     "auth": true
+  },
+  {
+    "url": "/match",
+    "controller": "\\App\\Services\\matchProfileServices",
+    "methods": [
+      "POST"
+    ],
+    "method": "findBestMatch",
+    "auth": true
   }
 ]

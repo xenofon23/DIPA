@@ -39,10 +39,8 @@ class Page
     }
     //TODO IF I ' M NOT BORED I CAN ADD ROUTES FOR PROCESS IN PAGE
     public function callProcess($class,$function,$vars){
-//        $obj=new Search();
-//        return json_encode($obj->function());
-        sleep(2);
-        return 'pare ta datadddddddddddddddddddddddddddddddddddddddd';
+        $obj=new $class();
+        return $obj->$function();
     }
 
     public function isRegisteredPage($pageName): object|array|null

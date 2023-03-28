@@ -103,8 +103,10 @@ class matchProfileServices
         $data=[];
         $collection=$this->mongo('UserDetails');
         foreach ($maxUsesrId as $id) {
+            $projection = ['_id' => 0]; // exclude _id field from the projection
+            $options = ['projection' => $projection]; // add fields you want to include in projection
             $filter = ['userId' => "$id"];
-            $profiles = $collection->find($filter);
+            $profiles = $collection->findOne($filter,$options);
             $data[] = iterator_to_array($profiles);
         }
 
