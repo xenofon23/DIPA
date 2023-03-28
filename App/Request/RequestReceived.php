@@ -4,7 +4,7 @@ namespace App\Request;
 
 use App\Helpers\helperString;
 
-class RequestReceived
+class RequestReceived implements RequestReceivedinterface
 {
 
     use helperString;
@@ -34,46 +34,9 @@ class RequestReceived
         return $headers;
     }
 
-    /**
-     * @throws \Exception
-     */
-    public function getUriVars(): ?array
+    public function getMessage()
     {
-        $query = parse_url($this->uri, PHP_URL_QUERY);
-        if(is_null($query)){
-            return null;
-        }
-        preg_match('/&/', 'foobarbaz', $matches);
-        if(count($matches)===1){
-            $key=stristr($query, '=', true);
-            $value=substr($query, strpos($query, "=") + 1);
-            $vars[$key]=$value;
-            return $vars;
-        }
-        $explods=explode('&',$query);
-        $vars=[];
-        foreach ($explods as $explod){
-            $key=stristr($explod, '=', true);
-            $value=substr($explod, strpos($explod, "=") + 1);
-            $vars[$key]=$value;
-        }
-         return $vars ;
-    }
-    public function getUriPath(){
-        $query = parse_url($this->uri, PHP_URL_PATH);
-        return $query ;
-    }
-
-
-
-    public function getData()
-    {
-        $data=json_decode(file_get_contents('php://input'),true);
-        return $data;
-    }
-
-    public function getAutCookie(){
-        return $_COOKIE['auth']??null;
+        return file_get_contents('php://input');
     }
 
     public function getFullUrl(): string

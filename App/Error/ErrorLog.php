@@ -27,11 +27,10 @@ class ErrorLog
         $this->message = $message;
         $this->file = $file;
         $this->line = $line;
-        $this->addError();
     }
 
-    private function addError(){
-        $filePath= '../App/Var/Logs'.$this->getCurrentDate().'.txt';
+    public function addError(){
+        $filePath= './var/logs/'.$this->getCurrentDate().'.txt';
         file_put_contents($filePath,$this->errorString(),FILE_APPEND);
 
     }

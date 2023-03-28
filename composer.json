@@ -1,10 +1,11 @@
 {
   "require": {
-    "mongodb/mongodb": "*",
+    "mongodb/mongodb": "1.9.0",
     "ext-json": "*",
+    "phpmailer/phpmailer": "v6.7.1",
     "ext-curl": "*",
     "psr/http-message": "1.0.1",
-    "ext-mongodb": "*"
+    "ext-yaml": "*"
   },
   "autoload": {
     "psr-4": {
@@ -22,4 +23,3 @@
     }
   }
 }
-

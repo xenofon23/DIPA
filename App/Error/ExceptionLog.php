@@ -27,13 +27,11 @@ class ExceptionLog
         $this->message = $message;
         $this->file = $file;
         $this->line = $line;
-        $this->addException();
     }
 
 
-    private function addException(): void
-    {
-        $filePath= '../App/Var/Logs'.$this->getCurrentDate().'.txt';
+    public function addException(){
+        $filePath= './var/logs/'.$this->getCurrentDate().'.txt';
         file_put_contents($filePath,$this->errorString(),FILE_APPEND);
 
     }

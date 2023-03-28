@@ -6,14 +6,12 @@ class Routes
 {
     protected array $routes = [];
 
-    public function addRoute($url, $controller, $methods,$method,$auth)
+    public function addRoute($url, $controller, $methods)
     {
         $this->routes[] = [
             'url' => $url,
             'controller' => $controller,
             'methods' => $methods,
-            'method'=>$method,
-            'auth'=>$auth
         ];
     }
 
@@ -22,12 +20,13 @@ class Routes
         return $this->routes;
     }
 
-    public function loadRoutesFromJson(): void
+    public function loadRoutesFromYaml($file)
     {
-        $routes =json_decode(file_get_contents('../App/Router/routes.json'),true);
+        $routes = yaml_parse_file($file);
 
         foreach ($routes as $route) {
-            $this->addRoute($route['url'], $route['controller'], $route['methods'],$route['method'],$route['auth']);
+            $this->addRoute($route['url'], $route['controller'], $route['methods']);
         }
+        print_r($routes);
     }
 }
