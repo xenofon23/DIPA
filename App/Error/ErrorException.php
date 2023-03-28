@@ -3,6 +3,7 @@
 namespace App\Error;
 
 use App\Helpers\headers;
+use App\View\Page;
 
 class ErrorException
 {
@@ -19,9 +20,8 @@ class ErrorException
             "line" => $errLine
         ];
         $errorLog=new ErrorLog('error',$time,$errNo,$errMsg,$errFile,$errLine);
-        $errorLog->addError();
         $this->set_headers('json');
-        echo json_encode($errorArray,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        die(json_encode($errMsg,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
     }
 
     public function exceptCallback(\Throwable $e )
@@ -37,9 +37,11 @@ class ErrorException
             "trace" => $e->getTrace()
         ];
         $exceptionLog=new ExceptionLog('exception',$time,$e->getTrace(),$e->getMessage(),$e->getFile(),$e->getLine());
-        $exceptionLog->addException();
         $this->set_headers('json');
-        echo json_encode($exceptionArray,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        die(json_encode($exceptionArray,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
+//        $page=new Page();
+//        //TODO 404 PAGE OR OOPS
+//        die($page->generatePage('/index.html'));
 
     }
 

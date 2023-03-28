@@ -1,0 +1,56 @@
+
+[{
+    "url": "/AuthenticationController/Login",
+    "controller": "\\App\\Controllers\\AuthenticationController",
+    "methods": [
+      "POST"
+    ],
+    "method": "enableLogin",
+    "auth": false
+  },
+  {
+    "url": "/AuthenticationController/Register",
+    "controller": "\\App\\Controllers\\AuthenticationController",
+    "methods": [
+      "POST"
+    ],
+    "method": "enableRegister",
+    "auth": false
+  },
+  {
+    "url": "/AuthenticationController/Test",
+    "controller": "\\App\\Controllers\\AuthenticationController",
+    "methods": [
+      "POST"
+    ],
+    "method": "test",
+    "auth": true
+  },
+  {
+    "url": "/UserDetailsController/CreateProfile",
+    "controller": "\\App\\Controllers\\UserDetailsController",
+    "methods": [
+      "POST"
+    ],
+    "method": "createProfile",
+    "auth": true
+  },
+  {
+    "url": "/UserDetailsController/UpdateProfile",
+    "controller": "\\App\\Controllers\\UserDetailsController",
+    "methods": [
+      "POST"
+    ],
+    "method": "updateProfile",
+    "auth": true
+  },
+  {
+    "url": "/match",
+    "controller": "\\App\\Services\\matchProfileServices",
+    "methods": [
+      "POST"
+    ],
+    "method": "findBestMatch",
+    "auth": true
+  }
+]
