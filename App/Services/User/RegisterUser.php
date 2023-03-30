@@ -42,29 +42,30 @@ class RegisterUser
     /**
      * @throws Exception
      */
-    public function register(): string
-    {if($this->isRegisterUser()){
-        $collection=$this->mongo('profiles');
-        $document=[
-            'username'=>$this->userName,
-            'userId'=>$this->userId,
-            'password'=>$this->password
+    public function register()
+    {
+        if ($this->isRegisterUser()) {
+            $collection = $this->mongo('profiles');
+            $document = [
+                'username' => $this->userName,
+                'userId' => $this->userId,
+                'password' => $this->password
             ];
-        $result = $collection->insertOne($document);
-        // header("Location: index.html");
+            $result = $collection->insertOne($document);
+            $crid=['userName'=>$this->userName,'password'=>$this->password];
+            $login=new Login($crid);
+            $login->setAuthenticationCookie();
         return json_encode(array(
             "success" => true,
             "message" => "Register successfully!"
         ));
     }else{
-        header('Content-Type: application/json');
         return json_encode(array(
             "success" => false,
             "message" => "user has exist"
         ));
     }
+        }
+
+
     }
-
-
-
-}

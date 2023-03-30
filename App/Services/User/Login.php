@@ -112,12 +112,11 @@ class Login
      * @throws Exception
      */
     //TODO REDIRECT
-    private function setAuthenticationCookie(): string
+    public function setAuthenticationCookie(): string
     {
 
 //        session_start();
 //        $_SESSION["userId"] = $this->userId;
-
 
         $this->setToken(bin2hex(random_bytes(8)));
         $token = $this->token;

@@ -44,6 +44,6 @@ class Gateway
             return $page->generatePage($this->request->getUriPath(),$this->request->getUriVars());
         }
         throw new Exception('page does not and in .html');
-}
+    }
 
 }

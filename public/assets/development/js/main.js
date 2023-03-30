@@ -40,8 +40,39 @@ function handleRegistrationSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
+    let name = formData.get('name');
+    let pass = formData.get('password');
 
-    // TODO: send registration request with formData
+// create the data object to send in the request
+    let data = {
+        "userName": name,
+        "password": pass
+    };
+
+// send the fetch request to the API endpoint
+    fetch('http://message.lan/AuthenticationController/Register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if(data.success===true){
+            location.replace("http://message.lan/search.html")
+        }else {
+                console.log(data.message)
+            }
+        })
+        .catch(error => {
+            console.error('Error registering:', error);
+        });
 }
 
 renderPage();

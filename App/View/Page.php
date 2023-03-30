@@ -24,7 +24,7 @@ class Page
         $page =json_decode(json_encode($this->isRegisteredPage($page),true),true);
 
         if ($page===null){
-            $this->generatePage('404.html');
+            $this->generatePage('/search.html');
         }
         if (isset($page['dynamicData'])) {
             $page['template']['{{data}}']['dynamicData'] = $this->callProcess($page['dynamicData']['class'],$page['dynamicData']['function'],$vars);
