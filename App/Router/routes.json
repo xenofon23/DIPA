@@ -52,5 +52,14 @@
     ],
     "method": "findBestMatch",
     "auth": true
+  },
+  {
+    "url": "/showProfiles",
+    "controller": "\\App\\Controllers\\UserDetailsController",
+    "methods": [
+      "POST"
+    ],
+    "method": "showProfile",
+    "auth": true
   }
 ]

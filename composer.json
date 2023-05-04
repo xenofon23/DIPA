@@ -1,6 +1,6 @@
 {
   "require": {
-    "mongodb/mongodb": "*",
+    "mongodb/mongodb": "^1.15",
     "ext-json": "*",
     "ext-curl": "*",
     "psr/http-message": "1.0.1",
@@ -22,4 +22,3 @@
     }
   }
 }
-
