@@ -46,4 +46,8 @@ class UserDetailsController
         return $this->userProfile->updateUserProfile($this->data);
     }
 
+    public function showProfile(){
+        return $this->showProfile();
+    }
+
 }

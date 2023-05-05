@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Config;
-use App\Error\errorException;
+use App\Error\ErrorException;
 
 class Config
 {
