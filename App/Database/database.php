@@ -27,7 +27,8 @@ trait database
 //
 //        $mongoConnection=new Client($uri);
         $mongoConnection = new Mongo('mongodb://localhost:27017/');
-
+        $db = $mongoConnection->selectDatabase('dipa');
+        return $db->selectCollection($mongoCollection);
     }
 
 }
