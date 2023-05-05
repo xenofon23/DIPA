@@ -23,10 +23,11 @@ trait database
 //            $port,
 //            $database
 //        );
+
+//
 //        $mongoConnection=new Client($uri);
-        $mongoConnection = new Mongo('mongodb://127.0.0.1:27017/');
-        $db = $mongoConnection->selectDatabase('dipa');
-        return $db->selectCollection($mongoCollection);
+        $mongoConnection = new Mongo('mongodb://localhost:27017/');
+
     }
 
 }
