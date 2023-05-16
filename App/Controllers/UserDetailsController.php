@@ -21,7 +21,7 @@ class UserDetailsController
      * @param array $data
      * @throws Exception
      */
-    public function __construct(UserProfile $userProfile,array  $data)
+    public function __construct(UserProfile $userProfile,array  $data=[])
     {
         $this->data = $data;
         $this->userProfile=$userProfile;
@@ -47,7 +47,7 @@ class UserDetailsController
     }
 
     public function showProfile(){
-        return $this->showProfile();
+        return $this->userProfile->ShowUsersProfiles();
     }
 
 }

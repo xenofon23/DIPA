@@ -2,6 +2,7 @@
 
 namespace App\Services;
 use App\Database\database;
+use App\Services\User\UserDetails;
 use Exception;
 
 class matchProfileServices
@@ -24,9 +25,9 @@ class matchProfileServices
      */
     public function setUser(): void
     {
-//        $userDetails = UserDetails::getInstance();
-//        $userId=$userDetails->getUserId();
-        $userId='b8fd04112ae91cb4bb59750a6b5af6f2';
+        $userDetails = UserDetails::getInstance();
+        $userId=$userDetails->getUserId();
+//        $userId='b8fd04112ae91cb4bb59750a6b5af6f2';
         $collection=$this->mongo('UserDetails');
         $this->user=json_decode(json_encode($collection->findOne(["userId"=>$userId]),1),1);
 
@@ -95,7 +96,7 @@ class matchProfileServices
         $maxUsersId = array_keys($score, $maxValue);
         $data=$this->getmatchedProfiles( $maxUsersId);
         return json_encode(array(
-            "success" => false,
+            "success" => true,
             "message" => $data
         ));
     }

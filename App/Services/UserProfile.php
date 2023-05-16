@@ -69,6 +69,6 @@ class UserProfile
     public function ShowUsersProfiles(){
         $collection = $this->mongo('UserDetails');
         $results = $collection->find();
-        return iterator_to_array($results);
+       return json_encode(iterator_to_array($results));
     }
 }
