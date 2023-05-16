@@ -51,7 +51,6 @@ const handleLoginSubmit = () => {
         "userName": name,
         "password": pass
     };
-
 // send the fetch request to the API endpoint
     fetch('http://dipa.lan/AuthenticationController/Login', {
         method: 'POST',
@@ -68,7 +67,7 @@ const handleLoginSubmit = () => {
         })
         .then(data => {
             if(data.success===true){
-                location.replace("http://dipa.lan/search.html")
+                location.replace("http://dipa.lan/profile.html")
             }else {
                 console.log(data.message)
             }
@@ -106,7 +105,7 @@ const handleRegisterSubmit = () => {
         })
         .then(data => {
             if(data.success===true){
-                location.replace("http://dipa.lan/search.html%22")
+                location.replace("http://dipa.lan/profile.html")
             }else {
                 console.log(data.message)
             }
