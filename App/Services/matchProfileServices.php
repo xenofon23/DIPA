@@ -84,16 +84,22 @@ class matchProfileServices
                 $score[$profile->userId] = $this->calculateScore($profile);
             }
         }
+
+        foreach ($score as $userscore){
+            if($userscore>$max_score){
+                $max_score=$userscore;
+            }
+        }
         $maxValue = max($score);
-        if(is_array($maxValue) ){
-            if($maxValue[0]===0){
+       print_r($maxValue);
+        if($max_score===0){
                 return json_encode(array(
                     "success" => false,
                     "message" => "you don't match any profile"
                 ));
-            }
+
         }
-        $maxUsersId = array_keys($score, $maxValue);
+        $maxUsersId = array_keys($score, $max_score);
         $data=$this->getmatchedProfiles( $maxUsersId);
         return json_encode(array(
             "success" => true,
