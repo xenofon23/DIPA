@@ -15,9 +15,9 @@ class Login
 
     private string $userName;
     private string $password;
-    private String $token;
+    private string $token;
 
-    private String $savedUserName;
+    private string $savedUserName;
     private string $savedPassword;
     private string $userId;
 
@@ -27,17 +27,18 @@ class Login
      */
     public function __construct(array $data)
     {
-        $this->userName=$data['userName'];
-        $this->password=hash('sha256',$data['password']);
+        $this->userName = $data['userName'];
+        $this->password = hash('sha256', $data['password']);
         $this->setUp();
     }
 
-     private function searchUserProfile(){
-        $collection=$this->mongo('profiles');
-        $projection = ['username' => 1, 'password' => 1,'userId'=>1, '_id' => 0];
+    private function searchUserProfile()
+    {
+        $collection = $this->mongo('profiles');
+        $projection = ['username' => 1, 'password' => 1, 'userId' => 1, '_id' => 0];
         $query = ['username' => $this->userName];
         $result = $collection->findOne($query, ['projection' => $projection]);
-        return json_decode(json_encode($result,true),true);
+        return json_decode(json_encode($result, true), true);
 
     }
 
@@ -46,8 +47,8 @@ class Login
      */
     private function setUp(): void
     {
-        $userProfile=$this->searchUserProfile();
-        if(is_null($userProfile)){
+        $userProfile = $this->searchUserProfile();
+        if (is_null($userProfile)) {
             throw new Exception('user not found');
         }
         $this->setSavedUserName($userProfile['username']);
@@ -60,20 +61,23 @@ class Login
     /**
      * @throws Exception
      */
-    public function loadService(){
-        if ($this->matchUserCredentials()){
+    public function loadService()
+    {
+        if ($this->matchUserCredentials()) {
             return $this->setAuthenticationCookie();
         }
         throw new Exception('fail password');
 
     }
+
     private function matchUserCredentials(): bool
     {
-        if(hash_equals($this->password,$this->savedPassword)){
+        if (hash_equals($this->password, $this->savedPassword)) {
             return true;
         }
         return false;
     }
+
     /**
      * @param String $savedUserName
      */
@@ -97,7 +101,6 @@ class Login
     {
         $this->token = $token;
     }
-
 
 
     /**
@@ -126,14 +129,17 @@ class Login
         $this->SetTokenInUserProfile();
 
 //        header("Location: index.html");
-        return 'login successfully';
+        return json_encode(array(
+            "success" => true,
+            "message" => "login succesfully"
+        ));
     }
 
     private function SetTokenInUserProfile()
     {
         $collection = $this->mongo('liveUsers');
-        $hash=$this->userId . ':' . $this->token;
-        $hash = hash('sha256',$hash);
+        $hash = $this->userId . ':' . $this->token;
+        $hash = hash('sha256', $hash);
         $documentFields = ['csrfToken' => $hash];
 
         $document = $collection->findOne(['userId' => $this->userId]);
@@ -147,7 +153,7 @@ class Login
             $collection->insertOne($documentFields);
         } else {
             // update existing document
-            $documentFields['expiresAt'] =new UTCDateTime();
+            $documentFields['expiresAt'] = new UTCDateTime();
 
             $collection->findOneAndUpdate(
                 ['userId' => $this->userId],

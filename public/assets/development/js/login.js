@@ -1,9 +1,7 @@
-import { renderLoginPage } from './templates/loginTemplate.js';
+import {renderLoginPage} from './templates/loginTemplate.js';
 
 const mainData = JSON.parse(document.getElementById('mainData').textContent);
 const container = document.getElementById('container');
-
-
 
 function renderPage() {
     container.innerHTML = renderLoginPage(mainData);
@@ -66,9 +64,9 @@ const handleLoginSubmit = () => {
             return response.json();
         })
         .then(data => {
-            if(data.success===true){
+            if (data.success === true) {
                 location.replace("http://dipa.lan/profile.html")
-            }else {
+            } else {
                 console.log(data.message)
             }
         })
@@ -104,9 +102,9 @@ const handleRegisterSubmit = () => {
             return response.json();
         })
         .then(data => {
-            if(data.success===true){
+            if (data.success === true) {
                 location.replace("http://dipa.lan/profile.html")
-            }else {
+            } else {
                 console.log(data.message)
             }
         })
@@ -115,8 +113,5 @@ const handleRegisterSubmit = () => {
         });
 
 }
-
-
-
 
 renderPage();
