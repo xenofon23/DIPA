@@ -1,9 +1,7 @@
-import { renderProfilePage } from './templates/profileTemplate.js';
+import {renderProfilePage} from './templates/profileTemplate.js';
 
 const mainData = JSON.parse(document.getElementById('mainData').textContent);
 const container = document.getElementById('container');
-
-
 
 function renderPage() {
     container.innerHTML = renderProfilePage(mainData);
@@ -13,18 +11,15 @@ function renderPage() {
     loginButton.addEventListener('click', onClick);
 }
 
-
 const onClick = () => {
     let location = document.querySelector('#location').value;
     let budget = document.querySelector('#budget').value;
     let age = document.querySelector('#age').value;
     let male = document.querySelector('#male').checked;
-    // let female = document.querySelector('#female').checked;
     let pet = document.querySelector('#pet').checked;
     let smoke = document.querySelector('#smoke').checked;
     let cleaning = document.querySelector('#cleaning').checked;
     let cooking = document.querySelector('#cooking').checked;
-
 
     let gender = male ? 'male' : 'female'
 
@@ -41,12 +36,9 @@ const onClick = () => {
             "housework": {
                 "clean": cleaning,
                 "cooking": cooking
-            }}}
-
-
-    console.log(data);
-
-
+            }
+        }
+    }
 
 // send the fetch request to the API endpoint
     fetch('http://dipa.lan/UserDetailsController/CreateProfile', {
@@ -63,9 +55,9 @@ const onClick = () => {
             return response.json();
         })
         .then(data => {
-            if(data.success===true){
+            if (data.success === true) {
                 location.replace("http://dipa.lan/search.html")
-            }else {
+            } else {
                 console.log(data.message)
             }
         })
@@ -73,8 +65,5 @@ const onClick = () => {
             console.error('Error registering:', error);
         });
 }
-
-
-
 
 renderPage();
