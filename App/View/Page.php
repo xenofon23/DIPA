@@ -22,7 +22,6 @@ class Page
     {
         $buildPage=new BuildPage();
         $page =json_decode(json_encode($this->isRegisteredPage($page),true),true);
-
         if ($page===null){
             $this->generatePage('/search.html');
         }

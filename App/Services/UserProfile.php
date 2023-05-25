@@ -1,5 +1,6 @@
 <?php
 namespace App\Services;
+use App\Services\User\UserDetails;
 use MongoDB;
 use Exception;
 use InvalidArgumentException;
@@ -13,8 +14,8 @@ class UserProfile
      */
     public function createUser(array $userDetails): false|string
     {
-        $flag=$this->isRegisterUser($userDetails['userId']);
-        if($flag) {
+        $flag=$this->isRegisterUser();
+        if($flag===true) {
             try {
                 $collection = $this->mongo('UserDetails');
                 $collection->insertOne($userDetails);
@@ -35,14 +36,19 @@ class UserProfile
         }
     }
 
-    public function isRegisterUser($userId):bool{
+    /**
+     * @throws Exception
+     */
+    public function isRegisterUser():bool| string{
+        $userDetails = UserDetails::getInstance();
+        $userId=$userDetails->getUserId();
         $collection=$this->mongo('UserDetails');
         $query = ['userId' => $userId];
         $result = $collection->findOne($query);
         if(is_null($result)){
             return true;
         }
-        return false;
+        return json_encode(iterator_to_array($result));
     }
 
     /**

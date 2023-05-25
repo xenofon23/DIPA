@@ -18,10 +18,9 @@ class UserDetailsController
 
     /**
      * @param UserProfile $userProfile
-     * @param array $data
      * @throws Exception
      */
-    public function __construct(UserProfile $userProfile,array  $data=[])
+    public function __construct(UserProfile $userProfile,array  $data)
     {
         $this->data = $data;
         $this->userProfile=$userProfile;
@@ -49,5 +48,10 @@ class UserDetailsController
     public function showProfile(){
         return $this->userProfile->ShowUsersProfiles();
     }
+
+//    public function returnUserDetails(): bool|string
+//    {
+////        return $this->userProfile->isRegisterUser($this->userId);
+//    }
 
 }
