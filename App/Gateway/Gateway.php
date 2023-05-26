@@ -5,6 +5,7 @@ namespace App\Gateway;
 
 
 
+use App\Helpers\AuthenticatedUser;
 use App\Helpers\general;
 use App\Request\RequestReceived;
 use App\Router\Router;
@@ -15,6 +16,7 @@ use Exception;
 class Gateway
 {
 
+    use AuthenticatedUser;
     use general;
     private Router $router;
     private RequestReceived $request;
@@ -40,6 +42,10 @@ class Gateway
     private function checkForPage(): string
     {
         if($this->checkHtml($this->request->getUriPath())){
+            echo $this->request->getUriPath();
+            if($this->request->getUriPath()!=='/index.html') {
+            $this->isAuthUser($this->request->getAutCookie());
+            }
             $page=new Page();
             return $page->generatePage($this->request->getUriPath(),$this->request->getUriVars());
         }
