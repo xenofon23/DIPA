@@ -42,7 +42,6 @@ class Gateway
     private function checkForPage(): string
     {
         if($this->checkHtml($this->request->getUriPath())){
-            echo $this->request->getUriPath();
             if($this->request->getUriPath()!=='/index.html') {
             $this->isAuthUser($this->request->getAutCookie());
             }
