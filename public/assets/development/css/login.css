@@ -14,6 +14,51 @@ body {
     align-items: center;
 }
 
+.top-bar {
+    width: 100%;
+    height: 7%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #eee;
+    background-color: #C007D9AA;
+    top: 0;
+}
+
+.top-bar .nav-title {
+    display: flex;
+    align-items: center;
+    flex-basis: 50%;
+    height: 100%;
+}
+
+.top-bar .nav-title a {
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-decoration: none;
+    color: #eee;
+    margin: 1rem;
+}
+
+.top-bar .nav-buttons {
+    display: flex;
+    flex-basis: 50%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.top-bar .nav-buttons a {
+    background-color: #0A062690;
+    margin: 0.4rem;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    color: #eee;
+    border-radius: 10px;
+}
+
 .container {
     width: 35%;
     margin: 0 auto;
@@ -61,7 +106,6 @@ body {
 .container .field {
     position: relative;
     overflow: hidden;
-    margin: 10% 0;
 }
 
 .container .field input {
