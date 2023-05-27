@@ -91,12 +91,12 @@ class matchProfileServices
             }
         }
         $maxValue = max($score);
-       print_r($maxValue);
+//        print_r($maxValue);
         if($max_score===0){
-                return json_encode(array(
-                    "success" => false,
-                    "message" => "you don't match any profile"
-                ));
+            return json_encode(array(
+                "success" => false,
+                "message" => "you don't match any profile"
+            ));
 
         }
         $maxUsersId = array_keys($score, $max_score);

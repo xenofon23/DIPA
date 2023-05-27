@@ -19,6 +19,7 @@ export function renderProfilePage(data) {
             <div class="nav-buttons">
                 <a href="profile.html">Create Profile</a>
                 <a href="matchProfiles.html">Match Profile</a>
+                <a href="showAll.html">Show All</a>
             </div>
         </div>
         <div class="container">
@@ -58,10 +59,10 @@ export function renderProfilePage(data) {
                 <div class="housework">
                     <h3>Housework</h3>
                     <from>
-                        <label>Cleaning</label>
-                        <input id="cleaning" type="radio" ${cleaning}>
-                        <label>Cooking</label>
-                        <input id="cooking" type="radio" ${cooking}>
+                        <label for="cleaning">Cleaning</label>
+                        <input type="radio" id="cleaning" value="Cleaning" name="housework_sel" ${cleaning}>
+                        <label for="cooking">Cooking</label>
+                        <input type="radio" id="cooking" value="Cooking" name="housework_sel" ${cooking}>
                     </from>
                 </div>
                 
@@ -78,7 +79,7 @@ export function renderProfilePage(data) {
                     </div>
                 </div>
 
-                <a href="#" id="login-button" class="login">Update</a>
+                <a href="matchProfiles.html" id="login-button" class="login">Update</a>
             </div>
         </div>
     </div>
@@ -93,6 +94,7 @@ export function renderProfilePage(data) {
             <div class="nav-buttons">
                 <a href="profile.html">Create Profile</a>
                 <a href="matchProfiles.html">Match Profile</a>
+                <a href="showAll.html">Show All</a>
             </div>
         </div>
         <div class="container">
@@ -132,10 +134,10 @@ export function renderProfilePage(data) {
                 <div class="housework">
                     <h3>Housework</h3>
                     <from>
-                        <label>Cleaning</label>
-                        <input id="cleaning" type="radio">
-                        <label>Cooking</label>
-                        <input id="cooking" type="radio">
+                        <label for="cleaning">Cleaning</label>
+                        <input type="radio" id="cleaning" value="Cleaning" name="housework_sel">
+                        <label for="cooking">Cooking</label>
+                        <input type="radio" id="cooking" value="Cooking" name="housework_sel">
                     </from>
                 </div>
                 

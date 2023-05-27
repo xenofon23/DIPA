@@ -1,4 +1,4 @@
-export function renderMatchProfilePage(data) {
+export function renderShowAllPage(data) {
     return `
     <div id="app">
         <div class="top-bar">
@@ -11,9 +11,9 @@ export function renderMatchProfilePage(data) {
                 <a href="showAll.html">Show All</a>
             </div>
         </div>
-        <div class="container">
-            <div class="inside-container">
-                <div id="card" style="width: 100%"></div>
+        <div class="container" style="width: 90%;position: absolute">
+            <div class="inside-container" style="display: flex; flex-wrap: wrap; width: 90%">
+                <div id="card"></div>
             </div>
         </div>
     </div>

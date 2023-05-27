@@ -6,8 +6,8 @@ export function renderLoginPage(data) {
                 <a href="index.html">RoomBuddy</a>
             </div>
             <div class="nav-buttons">
-                <a href="profile.html">Create Profile</a>
-                <a href="matchProfile.html">Match Profile</a>
+<!--                <a href="profile.html">Create Profile</a>-->
+<!--                <a href="matchProfile.html">Match Profile</a>-->
             </div>
         </div>
         <div class="container">

@@ -10,8 +10,10 @@ function renderPage() {
     const matchButton = document.querySelector('#match-button');
 
     // loginButton.addEventListener('click', onClick);
-    matchButton.addEventListener('click', onMatch);
+    // matchButton.addEventListener('click', onMatch);
+    onMatch();
 }
+
 
 const onMatch = () => {
     fetch('http://dipa.lan/match', {
@@ -24,7 +26,6 @@ const onMatch = () => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
             return response.json();
         })
         .then(data => {
