@@ -1,5 +1,6 @@
 <?php
 namespace App\Services;
+use App\Helpers\AuthenticatedUser;
 use App\Services\User\UserDetails;
 use MongoDB;
 use Exception;
