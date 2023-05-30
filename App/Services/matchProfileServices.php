@@ -47,8 +47,8 @@ class matchProfileServices
         $userBudget = (int)$this->user['basic']['budget']; // cast the user's budget to an integer
         $profileBudget = (int)$profile->basic->budget; // cast the profile's budget to an integer
         $diff = abs($userBudget - $profileBudget);
-        if ($diff <= 50) {
-            $score +=50 - $diff;
+        if ($diff <= 70) {
+            $score +=80 - $diff;
         }else{
             return 0;
         }
@@ -90,8 +90,7 @@ class matchProfileServices
                 $max_score=$userscore;
             }
         }
-        $maxValue = max($score);
-//        print_r($maxValue);
+
         if($max_score===0){
             return json_encode(array(
                 "success" => false,
