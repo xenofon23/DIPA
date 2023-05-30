@@ -23,7 +23,7 @@ class Page
         $buildPage=new BuildPage();
         $page =json_decode(json_encode($this->isRegisteredPage($page),true),true);
         if ($page===null){
-            $this->generatePage('/search.html');
+            $this->generatePage('/oops.html');
         }
         if (isset($page['dynamicData'])) {
             $page['template']['{{data}}']['dynamicData'] = $this->callProcess($page['dynamicData']['class'],$page['dynamicData']['function'],$vars);
