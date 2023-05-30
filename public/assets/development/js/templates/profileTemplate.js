@@ -1,8 +1,8 @@
 export function renderProfilePage(data) {
-    data = JSON.parse(data.dynamicData);;
+    data = JSON.parse(data.dynamicData);
 
     console.log(data)
-    if (data) {
+    if (data !== true) {
         let male = data.second.gender === 'male' ? 'checked' : ''
         let female = data.second.gender === 'female' ? 'checked' : ''
         let cleaning = data.second.housework.clean === true ? 'checked' : ''
