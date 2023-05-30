@@ -50,7 +50,7 @@ const onShowAll = () => {
                     document.querySelector('.inside-container').innerHTML = cards;
                 }
             } else {
-                console.log(data.message)
+                alert(data.message)
             }
         })
         .catch(error => {

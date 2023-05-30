@@ -5,10 +5,10 @@ export function renderProfilePage(data) {
     if (data !== true) {
         let male = data.second.gender === 'male' ? 'checked' : ''
         let female = data.second.gender === 'female' ? 'checked' : ''
-        let cleaning = data.second.housework.clean === true ? 'checked' : ''
-        let cooking = data.second.housework.cooking === true ? 'checked' : ''
-        let pet = data.second.pet === true ? 'checked' : ''
-        let smoke = data.second.smoke === true ? 'checked' : ''
+        let cleaning = data.second.housework.clean === '1' ? 'checked' : ''
+        let cooking = data.second.housework.cooking === '1' ? 'checked' : ''
+        let pet = data.second.pet === '1' ? 'checked' : ''
+        let smoke = data.second.smoke === '1' ? 'checked' : ''
 
         return `
     <div id="app">
@@ -154,7 +154,7 @@ export function renderProfilePage(data) {
                     </div>
                 </div>
 
-                <a href="#" id="login-button" class="login">Submit</a>
+                <a href="matchProfiles.html" id="login-button" class="login">Submit</a>
             </div>
         </div>
     </div>

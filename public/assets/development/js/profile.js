@@ -63,9 +63,9 @@ const onSubmit = () => {
         })
         .then(data => {
             if (data.success === true) {
-                location.replace("http://dipa.lan/search.html")
+                location.replace("http://dipa.lan/matchProfiles.html")
             } else {
-                console.log(data.message)
+                alert(data.message)
             }
         })
         .catch(error => {
@@ -122,7 +122,7 @@ const onUpdate = () => {
             if (data.success === true) {
                 location.replace("http://dipa.lan/search.html")
             } else {
-                console.log(data.message)
+                alert(data.message)
             }
         })
         .catch(error => {

@@ -67,7 +67,7 @@ const handleLoginSubmit = () => {
             if (data.success === true) {
                 location.replace("http://dipa.lan/profile.html")
             } else {
-                console.log(data.message)
+                alert(data.message)
             }
         })
         .catch(error => {
@@ -105,7 +105,7 @@ const handleRegisterSubmit = () => {
             if (data.success === true) {
                 location.replace("http://dipa.lan/profile.html")
             } else {
-                console.log(data.message)
+                alert(data.message)
             }
         })
         .catch(error => {

@@ -46,7 +46,7 @@ const onMatch = () => {
         `;
                 document.querySelector('#card').innerHTML = cards;
             } else {
-                console.log(data.message)
+                alert(data.message)
             }
         })
         .catch(error => {
